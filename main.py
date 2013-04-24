@@ -32,10 +32,9 @@ class drinksocket(asyncore.dispatcher):
 		self.create_socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.connect((HOST, PORT))
 		self.ds = drinkshell()
-		#self.send('ibutton ' + self.ds.ibutton + '\n')
 		self.buffer = 'ibutton ' + self.ds.ibutton + '\n'
 		self.handle_write()
-	
+
 	def handle_connect(self):
 		pass
 
@@ -47,7 +46,7 @@ class drinksocket(asyncore.dispatcher):
 		print(buffer)
 		def writable(self):
 			return (len(self.buffer) > 0)
-	
+
 	def handle_write(self):
 		sent = self.send(self.buffer)
 		self.buffer = self.buffer[sent:]
